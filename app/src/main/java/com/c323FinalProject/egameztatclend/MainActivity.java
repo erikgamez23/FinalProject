@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         TextView r = findViewById(R.id.textview1);
         r.setText("GitHub Test");
         r.setText("GitHub Test 2");
+        r.setText("Test 3");
     }
 }
