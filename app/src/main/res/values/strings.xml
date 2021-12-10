@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Final Project</string>
+    <string name="exercise">Exercise</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="modeoftraining">Mode Of Training</string>
+    <string name="dailytraining">Daily Training</string>
+    <string name="calendarview">Calendar View</string>
+    <string name="categories">Categories</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

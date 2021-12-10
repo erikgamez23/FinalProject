@@ -2,7 +2,10 @@ package com.c323FinalProject.egameztatclend;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,5 +18,13 @@ public class MainActivity extends AppCompatActivity {
         r.setText("GitHub Test");
         r.setText("GitHub Test 2");
         r.setText("Test 3");
+
+        Button navBar = findViewById(R.id.button);
+        navBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NavBarActivity.class));
+            }
+        });
     }
 }
