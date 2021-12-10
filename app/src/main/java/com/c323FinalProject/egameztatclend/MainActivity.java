@@ -14,10 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView r = findViewById(R.id.textview1);
-        r.setText("GitHub Test");
-        r.setText("GitHub Test 2");
-        r.setText("Test 3");
+
+        //TODO remove when signin activity is working just so testing is easy
 
         Button navBar = findViewById(R.id.button);
         navBar.setOnClickListener(new View.OnClickListener() {

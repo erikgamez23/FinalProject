@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="196dp"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="stuff"
+        android:src="@drawable/muskel"/>
+
+    <TextView
+        android:id="@+id/nav_header_name_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Blahblah"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"/>
+</LinearLayout>

@@ -24,13 +24,11 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:popupTheme="@style/Theme.AppCompat.Light"
                 android:elevation="4dp"/>
-
         </com.google.android.material.appbar.AppBarLayout>
         <FrameLayout
             android:id="@+id/framelayout_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -40,6 +38,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/nav_menu_layout"
-        app:headerLayout="@menu/nav_menu_header_layout"
-        />
+        app:headerLayout="@layout/nav_menu_header_layout"/>
 </androidx.drawerlayout.widget.DrawerLayout>

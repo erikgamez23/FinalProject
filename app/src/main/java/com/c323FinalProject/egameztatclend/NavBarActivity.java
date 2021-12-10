@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -27,8 +28,18 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         initializeViews();
         initializeDefaultFragment(savedInstanceState, 0);
         toggleDrawer();
+        checkforUserPhoto();
     }
 
+    /**
+     * TODO: Checks if user has a pfp: does nothing if null
+     */
+    private void checkforUserPhoto() {
+    }
+
+    /**
+     * Pretty self-explanatory lol
+     */
     private void initializeViews() {
         navigationView = findViewById(R.id.navigation_view_id);
         drawerLayout = findViewById(R.id.drawer_layout_id);
@@ -64,24 +75,37 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.ModeOfTraining:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new ModeOfTrainingFragment())
-                        .commit();
-                closeDrawer();
-                break;
             case R.id.Exercise:
                 getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new ExercisesFragment())
                         .commit();
                 closeDrawer();
                 break;
+            case R.id.ModeOfTraining:
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new ModeOfTrainingFragment())
+                        .commit();
+                closeDrawer();
+                break;
+            case R.id.DailyTraining:
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new DailyTrainingFragment())
+                        .commit();
+                closeDrawer();
+                break;
+            case R.id.CalendarView:
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new CalendarFragment())
+                        .commit();
+                closeDrawer();
+                break;
+
         }
         deSelectCheckedState();
         return true;
     }
-    /* Checks if the navigation drawer is open - if so, close it
+    /**
+     *  Checks if the navigation drawer is open - if so, close it
      */
     private void closeDrawer(){
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){

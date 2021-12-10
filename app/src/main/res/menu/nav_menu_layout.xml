@@ -5,22 +5,19 @@
 
     <item
         android:id="@+id/Exercise"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@drawable/muskel"
         android:title="@string/exercise" />
     <item
         android:id="@+id/ModeOfTraining"
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@android:drawable/stat_sys_warning"
         android:title="@string/modeoftraining" />
     <item
         android:id="@+id/DailyTraining"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@android:drawable/ic_menu_revert"
         android:title="@string/dailytraining" />
     <item
         android:id="@+id/CalendarView"
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="@string/calendarview" />
-    <item
-        android:id="@+id/Categories"
-        android:icon="@android:drawable/ic_menu_camera"
-        android:title="@string/categories" />
+
 </menu>
