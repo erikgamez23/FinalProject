@@ -19,5 +19,5 @@
         android:id="@+id/CalendarView"
         android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="@string/calendarview" />
-
+<!--  TODO add signout button  -->
 </menu>

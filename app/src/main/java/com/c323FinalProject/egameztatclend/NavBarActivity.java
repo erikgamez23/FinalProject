@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -31,6 +33,19 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         initializeDefaultFragment(savedInstanceState, 0);
         toggleDrawer();
         checkforUserPhoto();
+    }
+
+    public void replaceFragments(Class fragmentClass) {
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.framelayout_id, fragment)
+                .commit();
     }
 
     /**

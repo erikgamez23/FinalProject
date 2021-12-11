@@ -36,7 +36,7 @@ public class ExercisesFragment extends Fragment {
     }
 
     private void initializeViews(View v) {
-        FloatingActionButton m = v.findViewById(R.id.addExerciseButton);
+        FloatingActionButton m = v.findViewById(R.id.floatingActionButton);
         m.setBackgroundDrawable(getContext().getResources().getDrawable(android.R.drawable.btn_plus));
 
         m.setOnClickListener(new View.OnClickListener() {

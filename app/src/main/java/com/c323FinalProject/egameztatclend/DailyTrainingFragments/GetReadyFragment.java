@@ -4,28 +4,33 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.c323FinalProject.egameztatclend.NavBarActivity;
 import com.c323FinalProject.egameztatclend.R;
-import com.google.android.material.button.MaterialButton;
 
-public class DailyTrainingFragment extends Fragment {
+public class GetReadyFragment extends Fragment {
+    public int counter = 5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_daily_training, container, false);
-        MaterialButton b = v.findViewById(R.id.startTrainingButton);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        View v = inflater.inflate(R.layout.fragment_get_ready, container, false);
+
+        TextView countdownTextView = v.findViewById(R.id.getReadyTimer);
+        new CountDownTimer(5000, 1000){
+            public void onTick(long millisUntilFinished){
+                countdownTextView.setText(String.valueOf(counter));
+                counter--;
+            }
+            public  void onFinish(){
                 ((NavBarActivity) getActivity()).replaceFragments(GetReadyFragment.class);
             }
-        });
+        }.start();
         return v;
     }
 }

@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalendarFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Calendar Fragment" />
+        android:layout_height="match_parent">
+    <!--TODO Calendar -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
