@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO remove when signin activity is working just so testing is easy
 
-        Button navBar = findViewById(R.id.button);
+        Button navBar = findViewById(R.id.buttonNext);
         navBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
