@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExercisesFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".ExerciseFragments.ExercisesFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Exercises Fragment" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/exerciseListView"
+            android:layout_width="408dp"
+            android:layout_height="564dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addExerciseButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="292dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Add Exercise"
+            android:elevation="6dp"
+            android:text="@string/add_exercise"
+            app:backgroundTint="@color/design_default_color_secondary"
+            app:fabSize="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseListView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

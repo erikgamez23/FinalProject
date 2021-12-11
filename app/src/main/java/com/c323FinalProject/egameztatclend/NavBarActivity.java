@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.c323FinalProject.egameztatclend.DailyTrainingFragments.DailyTrainingFragment;
+import com.c323FinalProject.egameztatclend.ExerciseFragments.ExercisesFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class NavBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -75,6 +77,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
