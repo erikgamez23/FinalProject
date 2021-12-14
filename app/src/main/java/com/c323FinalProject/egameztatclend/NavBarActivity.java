@@ -93,6 +93,18 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         drawerToggle.syncState();
     }
 
+    @Override
+    public void onBackPressed() {
+        //Checks if the navigation drawer is open -- If so, close it
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        // If drawer is already close -- Do not override original functionality
+        else {
+            super.onBackPressed();
+        }
+    }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

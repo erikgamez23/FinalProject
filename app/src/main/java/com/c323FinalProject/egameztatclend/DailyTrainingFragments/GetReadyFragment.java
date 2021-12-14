@@ -15,22 +15,29 @@ import com.c323FinalProject.egameztatclend.R;
 
 public class GetReadyFragment extends Fragment {
     public int counter = 5;
-
+    CountDownTimer countDownTimer;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_get_ready, container, false);
 
         TextView countdownTextView = v.findViewById(R.id.getReadyTimer);
-        new CountDownTimer(5000, 1000){
+        countDownTimer = new CountDownTimer(5000, 1000){
             public void onTick(long millisUntilFinished){
                 countdownTextView.setText(String.valueOf(counter));
                 counter--;
             }
+
             public  void onFinish(){
                 ((NavBarActivity) getActivity()).replaceFragments(GetReadyFragment.class);
             }
         }.start();
         return v;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        countDownTimer.cancel();
     }
 }

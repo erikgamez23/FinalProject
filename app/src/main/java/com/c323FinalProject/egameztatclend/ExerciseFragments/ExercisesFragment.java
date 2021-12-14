@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.c323FinalProject.egameztatclend.DailyTrainingFragments.GetReadyFragment;
+import com.c323FinalProject.egameztatclend.NavBarActivity;
 import com.c323FinalProject.egameztatclend.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -38,12 +40,13 @@ public class ExercisesFragment extends Fragment {
     private void initializeViews(View v) {
         FloatingActionButton m = v.findViewById(R.id.floatingActionButton);
         m.setBackgroundDrawable(getContext().getResources().getDrawable(android.R.drawable.btn_plus));
-
         m.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //switch too add new AddExerciseFragment
+                ((NavBarActivity) getActivity()).replaceFragments(NewExerciseFragment.class);
                 Log.i("BUTTON", "ADD_EXERCISE");
+                //TODO Add DBHandler Stuff here (Adds to ListView here)
+
             }
         });
         exerciseListView = v.findViewById(R.id.exerciseListView);

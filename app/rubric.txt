@@ -1,0 +1,19 @@
+_5  Sign in Activity with session saving in shared Preference
+_5  Image Upload Implementation
+_15 Navigation Drawer Activity
+_10 Proper Implementation of all fragments for Navigation Menu
+_10 Exercise Fragment with Recycler View
+_10 Adding and deleting Exercises and saving to database.
+_5  Navigation to particular exercise from Exercise Fragment
+_10 Starting exercise with Count-Down Timer
+_5  After starting exercise, proper implementation of Done Button with message of completion
+_10 Selecting mode of training and proper display of toggle switch
+_10 Saving mode of training to Database
+_10 Setting Alarm Notification as Background Service
+_5  Starting Daily Challenge with get-ready message
+_5  Implementing training with proper countdown and progress bar status
+_10 Implementing rest time in between two exercises and finished state
+_5  Material Design Implementation-Progress Bar
+_10 Material Design implementation- Calendar View
+_5  Material Design implementation- Toggle Switch
+_5  Proper implementation of Calendar view with Highlighted Text
