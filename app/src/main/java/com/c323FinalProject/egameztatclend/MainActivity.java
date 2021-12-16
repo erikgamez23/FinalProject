@@ -76,16 +76,12 @@ public class MainActivity extends AppCompatActivity {
         editTextUserName = findViewById(R.id.editTextUserName);
         editTextEmail = findViewById(R.id.editTextUserEmail);
 
-
-
-        //TODO remove when signin activity is working just so testing is easy
-
         Button buttonNext = findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(editTextEmail.getText().toString().equals("") || editTextUserName.getText().toString().equals("")){
-                    Toast.makeText(MainActivity.this, "You must enter a username and email before continuing", Toast.LENGTH_SHORT).show();
+                if(editTextEmail.getText().toString().equals("") || editTextUserName.getText().toString().equals("") || imageViewProfilePic.getDrawable()==null){
+                    Toast.makeText(MainActivity.this, "You must enter a username, email, and image before continuing", Toast.LENGTH_SHORT).show();
                 } else {
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
