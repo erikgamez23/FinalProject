@@ -54,14 +54,14 @@
                 android:textSize="20sp" />
 
             <RadioButton
-                android:id="@+id/CustomButton"
+                android:id="@+id/RippedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_gravity="end"
                 android:layout_weight="0.13"
                 android:checked="false"
                 android:minHeight="25dp"
-                android:text="Custom"
+                android:text="Ripped"
                 android:textSize="20sp" />
 
         </RadioGroup>
