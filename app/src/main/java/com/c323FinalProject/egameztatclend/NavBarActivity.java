@@ -18,12 +18,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.c323FinalProject.egameztatclend.DailyTrainingFragments.DailyTrainingFragment;
 import com.c323FinalProject.egameztatclend.ExerciseFragments.ExercisesFragment;
+import com.c323FinalProject.egameztatclend.ModeOfTrainingFragment.ModeOfTrainingFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.FileNotFoundException;
@@ -80,12 +82,12 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
                 .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
-    /**
+    /*
      * TODO: Checks if user has a pfp: does nothing if null
      */
     private void checkforUserPhoto() {
 
-        /**
+        /*
          * TODO I added an instance variable called imageBitMap that will hold the user's pfp,
          * TODO and so in this method you can just check if imageBitMap != null. Commenting it out
          * TODO because I don't know for sure what you want this method to do.
@@ -106,6 +108,9 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         setSupportActionBar(toolbar);
         frameLayout = findViewById(R.id.framelayout_id);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        ImageView navBarImageView = headerView.findViewById(R.id.navBarImageView);
+        navBarImageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitMap,75,75,false));
     }
 
     /**
