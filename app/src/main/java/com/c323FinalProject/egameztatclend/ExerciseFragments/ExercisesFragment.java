@@ -105,14 +105,13 @@ public class ExercisesFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("key","abc"); // Put anything what you want
 
-                    Fragment_2 fragment2 = new Fragment_2();
+                    SingleExercise fragment2 = new SingleExercise();
                     fragment2.setArguments(bundle);
 
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content, fragment2)
                             .commit();
-                    ((NavBarActivity) getActivity()).replaceFragments(SingleExercise.class);
                     Log.i("BUTTON", "SINGLE_EXERCISE");
                     }
             });
