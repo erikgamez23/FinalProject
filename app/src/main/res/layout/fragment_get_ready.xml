@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/singleExerciseNameTextView"
             android:layout_width="262dp"
             android:layout_height="49dp"
             android:layout_marginStart="72dp"

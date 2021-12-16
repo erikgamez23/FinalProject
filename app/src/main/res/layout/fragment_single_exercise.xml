@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExerciseFragments.SingleExercise">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/singleExerciseNameTextView"
+            android:layout_width="262dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="32dp"
+            android:text="GET READY"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/singleExerciseImageView"
+            android:layout_width="254dp"
+            android:layout_height="252dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/muskel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/singleExerciseNameTextView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startDoneButton"
+            android:layout_width="344dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="108dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="Start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/singleExerciseImageView"></com.google.android.material.button.MaterialButton>
+
+        <TextView
+            android:id="@+id/singleTimerTextView"
+            android:layout_width="128dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/singleExerciseImageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -97,10 +97,26 @@ public class ExercisesFragment extends Fragment {
             ImageView image = view.findViewById(R.id.exercise_list_imageView);
             TextView name = view.findViewById(R.id.exerciseNameTextView);
             name.setText(exercise.get_name());
-            //TODO set Image to whatver image is used for exercise
+            //TODO set Image to whatever image is used for exercise
             image.setImageResource(R.drawable.muskel);
-            //TODO set OnClickListener to Exercise List Fragment
-            return view;
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                    public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("key","abc"); // Put anything what you want
+
+                    Fragment_2 fragment2 = new Fragment_2();
+                    fragment2.setArguments(bundle);
+
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content, fragment2)
+                            .commit();
+                    ((NavBarActivity) getActivity()).replaceFragments(SingleExercise.class);
+                    Log.i("BUTTON", "SINGLE_EXERCISE");
+                    }
+            });
+        return view;
         }
     }
 }

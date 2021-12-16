@@ -11,8 +11,8 @@
 
         <ListView
             android:id="@+id/exerciseListView"
-            android:layout_width="408dp"
-            android:layout_height="564dp"
+            android:layout_width="406dp"
+            android:layout_height="670dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
