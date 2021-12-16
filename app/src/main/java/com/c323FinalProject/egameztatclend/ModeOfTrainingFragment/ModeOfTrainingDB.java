@@ -23,10 +23,10 @@ import java.util.ArrayList;
 public class ModeOfTrainingDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "ExercisesDB.db";
-    private static final String TABLE_EXERCISE = "myExercises";
+    private static final String DATABASE_NAME = "ModesDB.db";
+    private static final String TABLE_MODE = "myModes";
     private static final String COLUMN_NAME = "_name";
-    private static final String COLUMN_BITMAP = "_bitmap";
+    private static final String COLUMN_SECONDS = "_seconds";
 
 
     public ModeOfTrainingDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -35,37 +35,37 @@ public class ModeOfTrainingDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISE +
-                "(" + COLUMN_NAME + " STRING PRIMARY KEY," + COLUMN_BITMAP + " TEXT)";
-        sqLiteDatabase.execSQL(CREATE_EXERCISES_TABLE);
+        String CREATE_MODE_TABLE = "CREATE TABLE " + TABLE_MODE +
+                "(" + COLUMN_NAME + " STRING PRIMARY KEY)";
+        sqLiteDatabase.execSQL(CREATE_MODE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_EXERCISE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_MODE);
         onCreate(sqLiteDatabase);
     }
 
-    public void addExercise(Exercise exercise) {
+    public void addMode(Mode mode) {
+        deleteExpenseDB(TABLE_MODE);
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, exercise.get_name());
-        values.put(COLUMN_BITMAP, exercise.get_bitmap());
+        values.put(COLUMN_NAME, mode.get_name());
+        values.put(COLUMN_SECONDS, mode.get_seconds());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_EXERCISE, null, values);
+        db.insert(TABLE_MODE, null, values);
         db.close();
     }
 
-
     public Boolean deleteExpenseDB(String key) {
         boolean result = false;
-        String query = "Select * FROM " + TABLE_EXERCISE + " WHERE " + COLUMN_NAME + " =  \"" + key + "\"";
+        String query = "Select * FROM " + TABLE_MODE + " WHERE " + COLUMN_NAME + " =  \"" + key + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Exercise exercise = new Exercise();
         if (cursor.moveToFirst()) {
             exercise.set_name(cursor.getString(0));
-            db.delete(TABLE_EXERCISE, COLUMN_NAME + " = ?", new String[]{exercise.get_name()});
+            db.delete(TABLE_MODE, COLUMN_NAME + " = ?", new String[]{exercise.get_name()});
             cursor.close();
             result = true;
         }
@@ -75,7 +75,7 @@ public class ModeOfTrainingDB extends SQLiteOpenHelper {
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE, null);
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_MODE, null);
         return res;
     }
 }
