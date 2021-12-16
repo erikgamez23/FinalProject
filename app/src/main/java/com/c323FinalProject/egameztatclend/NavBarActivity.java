@@ -41,7 +41,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         //TODO getting a reference to the sharedPreferences to get access to the user pfp and initializing bitmap.
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        imageBitMap = decodeBase64(sharedPreferences.getString("imageBitMap",null));
+        imageBitMap = decodeBase64(sharedPreferences.getString("imageBitMap",""));
 
         initializeViews();
         initializeDefaultFragment(savedInstanceState, 0);
