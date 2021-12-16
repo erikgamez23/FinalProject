@@ -35,9 +35,9 @@ public class MyExerciseDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_EXPENSES_TABLE = "CREATE TABLE " + TABLE_EXERCISE +
+        String CREATE_EXERCISES_TABLE = "CREATE TABLE " + TABLE_EXERCISE +
                 "(" + COLUMN_NAME + " STRING PRIMARY KEY," + COLUMN_BITMAP + " TEXT)";
-        sqLiteDatabase.execSQL(CREATE_EXPENSES_TABLE);
+        sqLiteDatabase.execSQL(CREATE_EXERCISES_TABLE);
     }
 
     @Override

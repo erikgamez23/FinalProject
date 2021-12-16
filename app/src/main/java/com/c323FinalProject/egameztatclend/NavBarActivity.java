@@ -10,17 +10,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.c323FinalProject.egameztatclend.DailyTrainingFragments.DailyTrainingFragment;
 import com.c323FinalProject.egameztatclend.ExerciseFragments.ExercisesFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class NavBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -186,6 +193,32 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         int noOfItems = navigationView.getMenu().size();
         for (int i=0; i<noOfItems;i++){
             navigationView.getMenu().getItem(i).setChecked(false);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        Bitmap newExerciseBitmap;
+        ImageView newExerciseImageView = findViewById(R.id.newExerciseImageView);
+        if (resultCode == RESULT_OK) {
+            if(reqCode == 1) {
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    newExerciseBitmap = BitmapFactory.decodeStream(imageStream);
+                    newExerciseImageView.setImageBitmap(Bitmap.createScaledBitmap(newExerciseBitmap, newExerciseImageView.getWidth(), newExerciseImageView.getHeight(),false));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
+                }
+            } else if( reqCode == 17){
+                Bundle extra = data.getExtras();
+                newExerciseBitmap= (Bitmap) extra.get("data");
+                newExerciseImageView.setImageBitmap(Bitmap.createScaledBitmap(newExerciseBitmap, newExerciseImageView.getWidth(), newExerciseImageView.getHeight(),false));
+            }
+        } else {
+            Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
     }
 }
