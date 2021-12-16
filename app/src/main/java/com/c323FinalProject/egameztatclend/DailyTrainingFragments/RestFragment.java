@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.c323FinalProject.egameztatclend.ExerciseFragments.Exercise;
@@ -62,6 +63,15 @@ public class RestFragment extends Fragment {
         counter = 10;
 
         countDownTextView = v.findViewById(R.id.textViewCountDownTimerRest);
+
+        Button skipButton = v.findViewById(R.id.buttonSkip);
+
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((NavBarActivity) requireActivity()).replaceProgressBarFragment(exercises,index+1);
+            }
+        });
 
 
         countDownTimer = new CountDownTimer(10000, 1000){

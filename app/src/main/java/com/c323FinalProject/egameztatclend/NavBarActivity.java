@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +44,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
     FrameLayout frameLayout;
     Bitmap imageBitMap;     //for user pfp
     SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

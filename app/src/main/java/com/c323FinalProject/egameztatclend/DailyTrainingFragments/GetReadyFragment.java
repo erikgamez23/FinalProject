@@ -89,6 +89,7 @@ public class GetReadyFragment extends Fragment {
             while (res.moveToNext()) {
                 Exercise temp = new Exercise();
                 temp.set_name(res.getString(0));
+                temp.set_bitmap(res.getString(1));
                 exercises.add(temp);
             }
         }

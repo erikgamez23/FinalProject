@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,11 @@ public class ProgressBarFragment extends Fragment {
     TextView textViewName;
     ImageView imageView;
     Button button;
+
+    Thread thread;
+    boolean running;
+
+    private Handler handler;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +80,7 @@ public class ProgressBarFragment extends Fragment {
 
         //TODO get current difficulty from db. Change 20 to whatever current difficulty is.
         maxProgress = 20;
+
     }
 
     @Override
@@ -92,14 +99,22 @@ public class ProgressBarFragment extends Fragment {
             public void onClick(View view) {
                 if(index == exercises.size() - 1){
                     Toast.makeText(getContext(),"Finished your daily challenge", Toast.LENGTH_SHORT).show();
+                    running = false;
                     ((NavBarActivity) requireActivity()).removeFragment(ProgressBarFragment.this);
                 } else {
+                    running = false;
                     ((NavBarActivity) requireActivity()).replaceRestFragment(exercises, index);
                 }
             }
         });
 
-        Bitmap bitmap = decodeBase64(exercises.get(index).get_bitmap());
+        Bitmap bitmap;
+
+        if(exercises.get(index).get_bitmap() != null){
+            bitmap = decodeBase64(exercises.get(index).get_bitmap());
+        } else {
+            bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.drawable.muskel);
+        }
 
         imageView.setImageBitmap(Bitmap.createScaledBitmap(bitmap,300,300,false));
 
@@ -108,37 +123,53 @@ public class ProgressBarFragment extends Fragment {
 
         progressBar.setMax(maxProgress);
 
+        handler = new Handler();
 
-        setProgressValue(progress, maxProgress);
-
-
-        return view;
-    }
-
-    private void setProgressValue(int progress, int max) {
-        // set the progress
-        progressBar.setProgress(progress);
-        // thread is used to change the progress value
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    if(progress == max){
-                        if(index == exercises.size()-1){   //if this isn't the last exercise...
-                            Toast.makeText(getContext(),"Finished your daily challenge", Toast.LENGTH_SHORT).show();
-                            ((NavBarActivity) requireActivity()).removeFragment(ProgressBarFragment.this);
-                        } else {                            //if this is the last exercise...
-                            ((NavBarActivity) requireActivity()).replaceRestFragment(exercises,index);
+                while (progress <= maxProgress) {
+                    progress++;
+
+                    if(!running) return;
+
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setProgress(progress);
                         }
+                    });
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
-                setProgressValue(progress, max);
+                if (index == exercises.size() - 1) {   //if this isn't the last exercise...
+                    try {
+                        Toast.makeText(getContext(), "Finished your daily challenge", Toast.LENGTH_SHORT).show();
+
+                        //TODO add data to DataBase
+
+                        ((NavBarActivity) requireActivity()).removeFragment(ProgressBarFragment.this);
+                    } catch(Exception e){
+                        e.printStackTrace();
+                    }
+                } else {                            //if this is the last exercise...
+                    try {
+                        ((NavBarActivity) requireActivity()).replaceRestFragment(exercises, index);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
         });
+
+        running = true;
+
         thread.start();
+
+        return view;
     }
 
     /**
