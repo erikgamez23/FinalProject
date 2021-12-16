@@ -7,10 +7,11 @@
     android:padding="12dp">
 
     <ImageView
+        android:id="@+id/navBarImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="stuff"
-        android:src="@drawable/muskel"/>
+        android:src="@drawable/muskel" />
 
     <TextView
         android:id="@+id/nav_header_name_id"
