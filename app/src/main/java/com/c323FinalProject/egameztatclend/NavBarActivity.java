@@ -24,12 +24,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.c323FinalProject.egameztatclend.DailyTrainingFragments.DailyTrainingFragment;
+import com.c323FinalProject.egameztatclend.DailyTrainingFragments.ProgressBarFragment;
+import com.c323FinalProject.egameztatclend.DailyTrainingFragments.RestFragment;
+import com.c323FinalProject.egameztatclend.ExerciseFragments.Exercise;
 import com.c323FinalProject.egameztatclend.ExerciseFragments.ExercisesFragment;
 import com.c323FinalProject.egameztatclend.ModeOfTrainingFragment.ModeOfTrainingFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class NavBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -55,6 +59,10 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         checkforUserPhoto();
     }
 
+    public void removeFragment(Fragment fragment){
+        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+    }
+
 
     public void replaceFragments(Class fragmentClass) {
         Fragment fragment = null;
@@ -62,6 +70,44 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.framelayout_id, fragment)
+                .commit();
+    }
+
+    /**
+     * Used only when replacing with progressBarFragment in order to keep track of the exercises
+     * @param exercises
+     * @param index
+     */
+    public void replaceProgressBarFragment(ArrayList<Exercise> exercises, int index) {
+        Fragment fragment;
+        try {
+            fragment = ProgressBarFragment.newInstance(exercises,index);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.framelayout_id, fragment)
+                .commit();
+    }
+
+    /**
+     * Used only when replacing with progressBarFragment in order to keep track of the exercises
+     * @param exercises
+     * @param index
+     */
+    public void replaceRestFragment(ArrayList<Exercise> exercises, int index) {
+        Fragment fragment;
+        try {
+            fragment = RestFragment.newInstance(exercises,index);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
         }
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -1,6 +1,9 @@
 package com.c323FinalProject.egameztatclend.ExerciseFragments;
 
-public class Exercise {
+
+import java.io.Serializable;
+
+public class Exercise implements Serializable {
     private String _name;
     private String _bitmap;
 

@@ -36,6 +36,7 @@ public class ExercisesFragment extends Fragment {
     MyExerciseDBHandler dbHandler;
 
     ListView exerciseListView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
