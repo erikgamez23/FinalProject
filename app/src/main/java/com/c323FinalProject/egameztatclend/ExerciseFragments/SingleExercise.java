@@ -18,6 +18,7 @@ import com.google.android.material.button.MaterialButton;
 
 
 public class SingleExercise extends Fragment {
+    TextView exerciseName;
     TextView countdown;
     public int counter = 20;
     CountDownTimer countDownTimer;
@@ -41,7 +42,6 @@ public class SingleExercise extends Fragment {
                             countdown.setText(String.valueOf(counter));
                             counter--;
                         }
-
                         public  void onFinish(){
                             ((NavBarActivity) getActivity()).replaceFragments(ExercisesFragment.class);
                         }

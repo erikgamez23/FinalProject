@@ -37,17 +37,13 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     FrameLayout frameLayout;
-
     Bitmap imageBitMap;     //for user pfp
-
     SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
-
         //TODO getting a reference to the sharedPreferences to get access to the user pfp and initializing bitmap.
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
@@ -58,7 +54,6 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         toggleDrawer();
         checkforUserPhoto();
     }
-
 
 
     public void replaceFragments(Class fragmentClass) {

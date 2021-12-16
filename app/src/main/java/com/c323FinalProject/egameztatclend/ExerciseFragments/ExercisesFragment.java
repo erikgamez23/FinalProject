@@ -64,11 +64,6 @@ public class ExercisesFragment extends Fragment {
         MyExerciseDBHandler dbHandler = new MyExerciseDBHandler(getActivity(), null, null, 1);
         Cursor res = dbHandler.getAllData();
         if (res.getCount() == 0) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Sorry");
-            builder.setCancelable(true);
-            builder.setMessage("No data found");
-            builder.show();
         } else {
             while (res.moveToNext()) {
                 Exercise temp = new Exercise();
@@ -102,16 +97,7 @@ public class ExercisesFragment extends Fragment {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                     public void onClick(View view) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("key","abc"); // Put anything what you want
-
-                    SingleExercise fragment2 = new SingleExercise();
-                    fragment2.setArguments(bundle);
-
-                    getFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content, fragment2)
-                            .commit();
+                    ((NavBarActivity) getActivity()).replaceFragments(SingleExercise.class);
                     Log.i("BUTTON", "SINGLE_EXERCISE");
                     }
             });
