@@ -10,7 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -25,10 +29,20 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
     NavigationView navigationView;
     FrameLayout frameLayout;
 
+    Bitmap imageBitMap;     //for user pfp
+
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
+
+        //TODO getting a reference to the sharedPreferences to get access to the user pfp and initializing bitmap.
+
+        sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        imageBitMap = decodeBase64(sharedPreferences.getString("imageBitMap",null));
+
         initializeViews();
         initializeDefaultFragment(savedInstanceState, 0);
         toggleDrawer();
@@ -49,9 +63,30 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
     }
 
     /**
+     * Method used to decode base64 from SharedPrefs into bitmap.
+     * @param input
+     * @return
+     */
+    public Bitmap decodeBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
+    }
+
+    /**
      * TODO: Checks if user has a pfp: does nothing if null
      */
     private void checkforUserPhoto() {
+
+        /**
+         * TODO I added an instance variable called imageBitMap that will hold the user's pfp,
+         * TODO and so in this method you can just check if imageBitMap != null. Commenting it out
+         * TODO because I don't know for sure what you want this method to do.
+         */
+
+        //if(imageBitMap != null){
+        //  do something
+        //}
     }
 
     /**

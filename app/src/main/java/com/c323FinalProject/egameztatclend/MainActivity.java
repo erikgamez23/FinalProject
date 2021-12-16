@@ -12,6 +12,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editTextUserName, editTextEmail;
 
+    Bitmap imageBitmap;
+
 
 
     @Override
@@ -36,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //accessing sharedPreferences to find user info
-        SharedPreferences myPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
 
 
         //if the user is still logged in, immediately take them to the next activity
-        if(myPrefs.getBoolean("loggedIn",false)){
+        if(sharedPreferences.getBoolean("loggedIn",false)){
             startActivity(new Intent(MainActivity.this, NavBarActivity.class));
         }
 
@@ -83,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "You must enter a username and email before continuing", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    SharedPreferences.Editor editor = myPrefs.edit();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
 
                     editor.putString("userName", editTextUserName.getText().toString());
                     editor.putString("email", editTextEmail.getText().toString());
+                    editor.putString("imageBitMap",encodeTobase64(imageBitmap));
                     editor.putBoolean("loggedIn", true);
 
                     editor.apply();
@@ -95,6 +101,34 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Method to encode an image bitmap to be able to store it in SharedPreferences
+     * along with the user's profile.
+     * @param image
+     * @return
+     */
+    public String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
+
+    /**
+     * Method used to decode base64 from SharedPrefs into bitmap.
+     * @param input
+     * @return
+     */
+    public Bitmap decodeBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
     @Override
@@ -107,17 +141,17 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     final Uri imageUri = data.getData();
                     final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    imageViewProfilePic.setImageBitmap(Bitmap.createScaledBitmap(selectedImage,imageViewProfilePic.getWidth(),imageViewProfilePic.getHeight(),false));
+                    imageBitmap = BitmapFactory.decodeStream(imageStream);
+                    imageViewProfilePic.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,imageViewProfilePic.getWidth(),imageViewProfilePic.getHeight(),false));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
                 }
             } else if( reqCode == 17){
                 Bundle extra = data.getExtras();
-                Bitmap bitmap = (Bitmap) extra.get("data");
+                imageBitmap= (Bitmap) extra.get("data");
                 ImageView imageView = findViewById(R.id.imageViewProfilePic);
-                imageViewProfilePic.setImageBitmap(Bitmap.createScaledBitmap(bitmap,imageViewProfilePic.getWidth(),imageViewProfilePic.getHeight(),false));
+                imageViewProfilePic.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,imageViewProfilePic.getWidth(),imageViewProfilePic.getHeight(),false));
             }
         } else {
             Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
