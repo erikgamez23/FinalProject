@@ -72,6 +72,8 @@ public class NewExerciseFragment extends Fragment {
        }
        else {
            Exercise exercise = new Exercise();
+           exercise.set_name(newExerciseName.getText().toString());
+            //TODO Add Bitmap to Database
            MyExerciseDBHandler dbHandler = new MyExerciseDBHandler(getContext(), null, null, 1);
            dbHandler.addExercise(exercise);
            Log.i("YES","ADDED TO DB");

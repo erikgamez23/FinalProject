@@ -1,9 +1,11 @@
 package com.c323FinalProject.egameztatclend.ExerciseFragments;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 
 public class ExercisesFragment extends Fragment {
     ArrayList<Exercise> exerciseList;
-    ArrayAdapter<Exercise> ExerciseArrayAdapter;
+    ArrayAdapter<Exercise> exerciseArrayAdapter;
 
     ListView exerciseListView;
     @Override
@@ -45,18 +47,37 @@ public class ExercisesFragment extends Fragment {
             public void onClick(View view) {
                 ((NavBarActivity) getActivity()).replaceFragments(NewExerciseFragment.class);
                 Log.i("BUTTON", "ADD_EXERCISE");
-                //TODO Add DBHandler Stuff here (Adds to ListView here)
-
+                addExercisesDB();
             }
         });
         exerciseListView = v.findViewById(R.id.exerciseListView);
         exerciseList = new ArrayList<>();
+        addExercisesDB();
         exerciseList.add(new Exercise("Push Ups","ph.com"));
         exerciseList.add(new Exercise("Sit Ups","xv.com"));
         exerciseList.add(new Exercise("Pull Ups","xn.com"));
-        ExerciseArrayAdapter = new ExerciseArrayAdapter();
-        exerciseListView.setAdapter(ExerciseArrayAdapter);
+        exerciseArrayAdapter = new ExerciseArrayAdapter();
+        exerciseListView.setAdapter(exerciseArrayAdapter);
     }
+
+    private void addExercisesDB() {
+        MyExerciseDBHandler dbHandler = new MyExerciseDBHandler(getActivity(), null, null, 1);
+        Cursor res = dbHandler.getAllData();
+        if (res.getCount() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Sorry");
+            builder.setCancelable(true);
+            builder.setMessage("No data found");
+            builder.show();
+        } else {
+            while (res.moveToNext()) {
+                Exercise temp = new Exercise();
+                temp.set_name(res.getString(0));
+                exerciseList.add(temp);
+            }
+        }
+    }
+
     /**
      * Adapter for ListView holding movies and inflating movie_layout views
      */
