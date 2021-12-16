@@ -29,7 +29,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-
 public class ExercisesFragment extends Fragment {
     ArrayList<Exercise> exerciseList;
     ArrayAdapter<Exercise> exerciseArrayAdapter;
@@ -78,8 +77,6 @@ public class ExercisesFragment extends Fragment {
             }
         }
     }
-
-
 
     /**
      * Adapter for ListView holding movies and inflating movie_layout views

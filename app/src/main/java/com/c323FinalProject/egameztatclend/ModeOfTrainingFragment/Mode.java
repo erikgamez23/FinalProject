@@ -24,7 +24,7 @@ public class Mode {
         return _seconds;
     }
 
-    public void set_seconds(String _bitmap) {
+    public void set_seconds(int _bitmap) {
         this._seconds = _seconds;
     }
 }
