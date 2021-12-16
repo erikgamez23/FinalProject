@@ -36,9 +36,10 @@
 
         <ImageView
             android:id="@+id/imageViewProfilePic"
-            android:layout_width="match_parent"
-            android:layout_height="182dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/default_profile_pic"
+            android:layout_centerInParent="true"/>
     </androidx.cardview.widget.CardView>
 
     <EditText
@@ -50,22 +51,22 @@
         android:layout_marginTop="55dp"
         android:layout_marginEnd="58dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewProfilePic" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextUserEmail"
         android:layout_width="291dp"
         android:layout_height="51dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Email"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,12 +77,13 @@
         android:layout_width="328dp"
         android:layout_height="41dp"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="42dp"
         android:text="By proceeding you also agree to the Terms of Service and Privacy Policy"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
