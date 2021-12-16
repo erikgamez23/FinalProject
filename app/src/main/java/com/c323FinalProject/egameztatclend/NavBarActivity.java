@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.c323FinalProject.egameztatclend.DailyTrainingFragments.DailyTrainingFragment;
 import com.c323FinalProject.egameztatclend.ExerciseFragments.ExercisesFragment;
+import com.c323FinalProject.egameztatclend.ModeOfTrainingFragment.ModeOfTrainingFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.FileNotFoundException;

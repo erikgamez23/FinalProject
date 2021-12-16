@@ -1,4 +1,4 @@
-package com.c323FinalProject.egameztatclend;
+package com.c323FinalProject.egameztatclend.ModeOfTrainingFragment;
 
 import android.os.Bundle;
 
@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.c323FinalProject.egameztatclend.R;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
@@ -23,5 +24,12 @@ public class ModeOfTrainingFragment extends Fragment {
     }
 
     private void initializeViews() {
+        //TODO set OnClick for set alarm on/off button
+
+        //TODO set up timepicker to be able to set the alarm
+
+        //TODO save option button
+
+        //TODO
     }
 }
