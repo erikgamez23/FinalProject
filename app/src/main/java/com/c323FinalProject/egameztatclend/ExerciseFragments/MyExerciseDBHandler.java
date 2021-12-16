@@ -55,7 +55,7 @@ public class MyExerciseDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public Boolean deleteExpenseDB(String key) {
+    public Boolean deleteExercise(String key) {
         boolean result = false;
         String query = "Select * FROM " + TABLE_EXERCISE + " WHERE " + COLUMN_NAME + " =  \"" + key + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
@@ -76,5 +76,4 @@ public class MyExerciseDBHandler extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("SELECT * FROM " + TABLE_EXERCISE, null);
         return res;
     }
-
 }
