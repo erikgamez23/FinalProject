@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ import java.io.InputStream;
 public class NewExerciseFragment extends Fragment {
 
     ImageView newExerciseImageView;
-
+    EditText newExerciseName;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class NewExerciseFragment extends Fragment {
     }
 
     private void initializeViews(View v) {
+        newExerciseName = v.findViewById(R.id.newExerciseName);
         MaterialButton b = v.findViewById(R.id.saveExerciseButton);
         newExerciseImageView = v.findViewById(R.id.newExerciseImageView);
         newExerciseImageView.setOnClickListener(new View.OnClickListener() {
@@ -64,9 +66,16 @@ public class NewExerciseFragment extends Fragment {
     }
 
     private void addExerciseToDB() {
-        MyExerciseDBHandler dbHandler = new MyExerciseDBHandler(getContext(), null, null, 1);
-        dbHandler.addExercise(new Exercise());
-        Log.i("YES","ADDED TO DB");
+       if(newExerciseName.getText().equals(""))
+       {
+           Toast toast = Toast.makeText(getContext(), "Add Name AND Picture", Toast.LENGTH_LONG);
+       }
+       else {
+           Exercise exercise = new Exercise();
+           MyExerciseDBHandler dbHandler = new MyExerciseDBHandler(getContext(), null, null, 1);
+           dbHandler.addExercise(exercise);
+           Log.i("YES","ADDED TO DB");
+       }
     }
 
     /**

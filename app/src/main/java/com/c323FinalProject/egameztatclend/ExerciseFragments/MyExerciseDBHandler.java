@@ -27,8 +27,6 @@ public class MyExerciseDBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_BITMAP = "_bitmap";
 
 
-
-
     public MyExerciseDBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
