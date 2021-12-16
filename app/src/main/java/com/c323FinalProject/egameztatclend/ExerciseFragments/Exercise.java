@@ -2,14 +2,14 @@ package com.c323FinalProject.egameztatclend.ExerciseFragments;
 
 public class Exercise {
     private String _name;
-    private String _imageLink;
+    private String _bitmap;
 
     public Exercise() {
     }
 
-    public Exercise(String _name, String _imageLink) {
+    public Exercise(String _name, String _bitmap) {
         this._name = _name;
-        this._imageLink = _imageLink;
+        this._bitmap = _bitmap;
     }
 
     public String get_name() {
@@ -20,11 +20,11 @@ public class Exercise {
         this._name = _name;
     }
 
-    public String get_imageLink() {
-        return _imageLink;
+    public String get_bitmap() {
+        return _bitmap;
     }
 
-    public void set_imageLink(String _imageLink) {
-        this._imageLink = _imageLink;
+    public void set_bitmap(String _bitmap) {
+        this._bitmap = _bitmap;
     }
 }
