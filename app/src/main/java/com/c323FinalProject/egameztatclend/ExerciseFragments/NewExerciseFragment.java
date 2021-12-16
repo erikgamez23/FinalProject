@@ -2,6 +2,8 @@ package com.c323FinalProject.egameztatclend.ExerciseFragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,6 +12,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -28,10 +31,16 @@ import com.google.android.material.button.MaterialButton;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class NewExerciseFragment extends Fragment {
+
+    Bitmap imageBitmap;
 
     ImageView newExerciseImageView;
     EditText newExerciseName;
@@ -95,6 +104,32 @@ public class NewExerciseFragment extends Fragment {
      * @return
      */
     private boolean hasCamera() {
-        return getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+        return requireActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==2 && resultCode==RESULT_OK)
+        {
+            if(data == null){
+                return;
+            }
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = requireActivity().getContentResolver().openInputStream(imageUri);
+                imageBitmap = BitmapFactory.decodeStream(imageStream);
+                newExerciseImageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap,150,150,false));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+            } catch (Exception ex){
+                ex.printStackTrace();
+                Toast.makeText(getActivity(),"Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(requireActivity(), "Failed To Capture Image", Toast.LENGTH_SHORT).show();
+        }
     }
 }

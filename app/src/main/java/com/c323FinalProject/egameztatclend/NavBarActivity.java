@@ -42,6 +42,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
 
     SharedPreferences sharedPreferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +58,8 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         toggleDrawer();
         checkforUserPhoto();
     }
+
+
 
     public void replaceFragments(Class fragmentClass) {
         Fragment fragment = null;
@@ -203,7 +206,6 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
-        super.onActivityResult(reqCode, resultCode, data);
         Bitmap newExerciseBitmap;
         ImageView newExerciseImageView = findViewById(R.id.newExerciseImageView);
         if (resultCode == RESULT_OK) {
@@ -225,5 +227,6 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         } else {
             Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
+        super.onActivityResult(reqCode, resultCode, data);
     }
 }
