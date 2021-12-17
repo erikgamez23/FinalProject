@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     Bitmap imageBitmap;
 
-
-
+    /**
+     * OnCreate method for MainActivity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

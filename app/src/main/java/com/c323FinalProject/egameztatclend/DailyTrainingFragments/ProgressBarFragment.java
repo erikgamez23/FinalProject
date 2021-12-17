@@ -1,5 +1,7 @@
 package com.c323FinalProject.egameztatclend.DailyTrainingFragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -75,7 +77,8 @@ public class ProgressBarFragment extends Fragment {
         progress = 0;
 
         //TODO get current difficulty from db. Change 20 to whatever current difficulty is.
-        maxProgress = 20;
+        SharedPreferences myPrefs = requireActivity().getPreferences(Context.MODE_PRIVATE);
+        maxProgress = myPrefs.getInt("mode",20);
 
     }
 
