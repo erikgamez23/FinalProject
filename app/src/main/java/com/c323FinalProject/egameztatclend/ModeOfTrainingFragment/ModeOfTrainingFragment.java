@@ -1,10 +1,17 @@
 package com.c323FinalProject.egameztatclend.ModeOfTrainingFragment;
 
+import static android.content.Context.ALARM_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import android.os.CountDownTimer;
 import android.provider.MediaStore;
@@ -15,11 +22,14 @@ import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.c323FinalProject.egameztatclend.Alarm;
 import com.c323FinalProject.egameztatclend.ExerciseFragments.MyExerciseDBHandler;
 import com.c323FinalProject.egameztatclend.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Date;
 
 public class ModeOfTrainingFragment extends Fragment {
 
@@ -27,7 +37,7 @@ public class ModeOfTrainingFragment extends Fragment {
     TimePicker timePicker;
     MaterialButton saveOption;
     RadioGroup radioGroup;
-
+    //Shared Preferences for changing mode
     SharedPreferences sharedPreferences;
 
     @Override
@@ -40,8 +50,21 @@ public class ModeOfTrainingFragment extends Fragment {
         return v;
     }
 
+    /**
+     * View v used as reference to fragment's views
+     * @param v
+     */
     private void initializeViews(View v) {
         setAlarm = v.findViewById(R.id.SetAlarmButton);
+        setAlarm.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                int time = timePicker.getHour()*60;
+                Intent i = new Intent(getActivity(), Alarm.class);
+                AlarmManager am =(AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
+            }
+        });
         timePicker = v.findViewById(R.id.timePicker);
         saveOption = v.findViewById(R.id.SaveOptionButton);
         saveOption.setOnClickListener(new View.OnClickListener() {

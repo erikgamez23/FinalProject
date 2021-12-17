@@ -58,6 +58,9 @@ public class GetReadyFragment extends Fragment {
         return v;
     }
 
+    /**
+     * overridden to cancel timer when fragment is destroyed
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -81,6 +84,9 @@ public class GetReadyFragment extends Fragment {
         return imageEncoded;
     }
 
+    /**
+     * gets reference of all exercises  in the database
+     */
     private void addExercisesDB() {
         dbHandler = new MyExerciseDBHandler(getActivity(), null, null, 1);
         Cursor res = dbHandler.getAllData();

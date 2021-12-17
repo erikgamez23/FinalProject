@@ -21,6 +21,10 @@ public class DailyTrainingFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_daily_training, container, false);
         MaterialButton b = v.findViewById(R.id.startTrainingButton);
         b.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Takes user through Daily Training Fragments
+             * @param view
+             */
             @Override
             public void onClick(View view) {
                 ((NavBarActivity) getActivity()).replaceFragments(GetReadyFragment.class);
