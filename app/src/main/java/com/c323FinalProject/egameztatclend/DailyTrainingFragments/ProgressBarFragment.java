@@ -42,10 +42,7 @@ public class ProgressBarFragment extends Fragment {
 
     private Handler handler;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    // TODO: Rename and change types of parameters
     private ArrayList<Exercise> exercises;
     private int index;
 
@@ -55,7 +52,6 @@ public class ProgressBarFragment extends Fragment {
      *
      * @return A new instance of fragment ProgressBarFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static ProgressBarFragment newInstance(ArrayList<Exercise> exercises, int index) {
         ProgressBarFragment fragment = new ProgressBarFragment();
         Bundle args = new Bundle();

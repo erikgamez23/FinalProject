@@ -88,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
                     editor.putString("userName", editTextUserName.getText().toString());
                     editor.putString("email", editTextEmail.getText().toString());
+
+                    if(imageBitmap == null){
+                        imageBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.default_profile_pic);
+                    }
+
                     editor.putString("imageBitMap",encodeTobase64(imageBitmap));
                     editor.putBoolean("loggedIn", true);
 

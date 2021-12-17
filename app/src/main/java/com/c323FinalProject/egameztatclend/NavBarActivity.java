@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,7 +51,6 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
-        //TODO getting a reference to the sharedPreferences to get access to the user pfp and initializing bitmap.
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         imageBitMap = decodeBase64(sharedPreferences.getString("imageBitMap",""));
@@ -58,7 +58,6 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         initializeViews();
         initializeDefaultFragment(savedInstanceState, 0);
         toggleDrawer();
-        checkforUserPhoto();
     }
 
     public void removeFragment(Fragment fragment){
@@ -128,21 +127,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
                 .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
-    /*
-     * TODO: Checks if user has a pfp: does nothing if null
-     */
-    private void checkforUserPhoto() {
 
-        /*
-         * TODO I added an instance variable called imageBitMap that will hold the user's pfp,
-         * TODO and so in this method you can just check if imageBitMap != null. Commenting it out
-         * TODO because I don't know for sure what you want this method to do.
-         */
-
-        //if(imageBitMap != null){
-        //  do something
-        //}
-    }
 
     /**
      * Pretty self-explanatory lol
@@ -157,6 +142,7 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
         View headerView = navigationView.getHeaderView(0);
         ImageView navBarImageView = headerView.findViewById(R.id.navBarImageView);
         navBarImageView.setImageBitmap(Bitmap.createScaledBitmap(imageBitMap,75,75,false));
+        Button logOut = navigationView.findViewById(R.id.nav_login);
     }
 
     /**
@@ -222,7 +208,12 @@ public class NavBarActivity extends AppCompatActivity implements NavigationView.
                         .commit();
                 closeDrawer();
                 break;
-
+            case R.id.nav_login:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("loggedIn",false);
+                editor.apply();
+                closeDrawer();
+                finish();
         }
         deSelectCheckedState();
         return true;
